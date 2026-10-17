@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b2b">
+  <meta name="description" content="أحمد منصور عيسى، مطور واجهات أمامية يهتم ببناء تجارب ويب عصرية وسهلة الاستخدام.">
+  <title>أحمد منصور عيسى | مطور واجهات أمامية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #101b2b;
+      --surface: #172538;
+      --surface-light: #1d3046;
+      --text: #f4f7fb;
+      --muted: #a8b5c5;
+      --accent: #75e0c1;
+      --accent-dark: #143d3b;
+      --border: rgba(216, 230, 244, .1);
+      font-family: "Cairo", Tahoma, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 14% 12%, rgba(63, 119, 137, .16), transparent 35rem),
+        var(--background);
+      line-height: 1.8;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 1;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      min-height: 82px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border: 1px solid rgba(117, 224, 193, .28);
+      border-radius: 13px;
+      color: var(--accent);
+      background: rgba(117, 224, 193, .08);
+      font-size: .92rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      color: var(--muted);
+      font-size: .91rem;
+    }
+
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+
+    .nav-cta, .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 20px;
+      border: 1px solid rgba(117, 224, 193, .38);
+      border-radius: 12px;
+      color: var(--accent);
+      background: rgba(117, 224, 193, .08);
+      font: inherit;
+      font-size: .9rem;
+      font-weight: 700;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .nav-cta:hover, .button:hover {
+      transform: translateY(-2px);
+      background: rgba(117, 224, 193, .15);
+    }
+
+    .hero {
+      display: grid;
+      min-height: 620px;
+      grid-template-columns: 1.12fr .88fr;
+      align-items: center;
+      gap: 72px;
+      padding-block: 74px 88px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--accent);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      width: 24px;
+      height: 2px;
+      background: currentColor;
+      content: "";
+    }
+
+    h1 {
+      max-width: 650px;
+      margin: 16px 0 20px;
+      font-size: clamp(2.5rem, 5vw, 4.35rem);
+      font-weight: 800;
+      letter-spacing: -.045em;
+      line-height: 1.25;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .hero-copy {
+      max-width: 590px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 2.1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button-primary {
+      border-color: var(--accent);
+      color: #10221f;
+      background: var(--accent);
+    }
+
+    .button-primary:hover { background: #91efd4; }
+
+    .button-secondary {
+      border-color: var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .hero-visual {
+      position: relative;
+      width: min(100%, 410px);
+      justify-self: center;
+      padding: 15px;
+    }
+
+    .hero-visual::before {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(117, 224, 193, .35);
+      border-radius: 34px;
+      content: "";
+      transform: rotate(5deg);
+    }
+
+    .portrait-frame {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 28px;
+      background: var(--surface);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .35);
+    }
+
+    .portrait-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 36%;
+    }
+
+    .portrait-caption {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      left: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 15px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 16px;
+      background: rgba(16, 27, 43, .83);
+      backdrop-filter: blur(12px);
+    }
+
+    .caption-icon {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--accent);
+      background: rgba(117, 224, 193, .12);
+      font-weight: 800;
+    }
+
+    .portrait-caption strong, .portrait-caption span { display: block; }
+    .portrait-caption strong { font-size: .9rem; }
+    .portrait-caption span { color: var(--muted); font-size: .75rem; }
+
+    .section {
+      padding-block: 78px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-heading {
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      margin: 10px 0 8px;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.4;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .about-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(29, 48, 70, .8), rgba(23, 37, 56, .78));
+    }
+
+    .about-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .about-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 20px;
+      border: 1px solid rgba(117, 224, 193, .16);
+      border-radius: 15px;
+      color: var(--accent);
+      background: rgba(117, 224, 193, .06);
+    }
+
+    .about-note p {
+      color: var(--text);
+      font-size: .92rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .skill-card {
+      min-height: 135px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: rgba(23, 37, 56, .72);
+      transition: border-color .2s ease, transform .2s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(117, 224, 193, .45);
+    }
+
+    .skill-icon {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 14px;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--accent);
+      background: rgba(117, 224, 193, .1);
+      font-size: .76rem;
+      font-weight: 800;
+    }
+
+    .skill-card h3 {
+      margin: 0;
+      font-size: .96rem;
+      font-weight: 700;
+    }
+
+    .closing {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 29px 32px;
+      border: 1px solid rgba(117, 224, 193, .2);
+      border-radius: 20px;
+      background: linear-gradient(110deg, rgba(20, 61, 59, .58), rgba(29, 48, 70, .82));
+    }
+
+    .closing h2 { margin: 0 0 4px; font-size: 1.4rem; }
+    .closing p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+    .site-footer {
+      padding-block: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-content p { margin: 0; }
+    .footer-name { color: var(--text); font-weight: 700; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 800px) {
+      .nav { min-height: 72px; }
+      .nav-links { gap: 18px; }
+      .nav-cta { display: none; }
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr .8fr;
+        gap: 32px;
+        padding-block: 64px;
+      }
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .container { width: min(100% - 36px, 480px); }
+      .nav { flex-wrap: wrap; padding-block: 12px; }
+      .brand { font-size: .9rem; }
+      .brand-mark { width: 36px; height: 36px; }
+      .nav-links { gap: 17px; font-size: .82rem; }
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 42px;
+        padding-block: 50px 64px;
+      }
+      .hero-copy { font-size: .98rem; }
+      .hero-visual { width: min(84%, 340px); }
+      .section { padding-block: 58px; }
+      .about-card { grid-template-columns: 1fr; gap: 18px; padding: 20px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .skill-card { min-height: 122px; padding: 16px; }
+      .closing { align-items: flex-start; flex-direction: column; padding: 24px; }
+      .footer-content { align-items: flex-start; flex-direction: column; gap: 4px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="home">
+    <nav class="nav container" aria-label="التنقل الرئيسي">
+      <a class="brand" href="#home" aria-label="أحمد منصور عيسى - الرئيسية">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>أحمد منصور عيسى</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">نبذة عني</a>
+        <a href="#skills">مهاراتي</a>
+      </div>
+      <a class="nav-cta" href="#skills">اكتشف مهاراتي <span aria-hidden="true">←</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <span class="eyebrow">مرحبًا، أنا أحمد</span>
+        <h1 id="hero-title">أصنع تجارب ويب <span>تترك أثرًا.</span></h1>
+        <p class="hero-copy">
+          مطور واجهات أمامية شغوف ببناء مواقع عصرية تجمع بين التصميم الجذاب، وسهولة الاستخدام، والأداء الموثوق على مختلف الأجهزة.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#skills">اكتشف مهاراتي <span aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="#about">تعرّف عليّ أكثر</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="portrait-frame">
+          <img src="img/WhatsApp%20Image%202026-10-05%20at%2010.54.47%20PM.jpeg" alt="صورة أحمد منصور عيسى">
+          <div class="portrait-caption">
+            <span class="caption-icon" aria-hidden="true">&lt;/&gt;</span>
+            <div>
+              <strong>مطور واجهات أمامية</strong>
+              <span>أحوّل الأفكار إلى تجارب رقمية</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">نبذة عني</span>
+          <h2 id="about-title">أهتم بالتفاصيل التي تصنع الفرق</h2>
+        </div>
+        <div class="about-card">
+          <p>
+            أعمل على تطوير واجهات ويب واضحة وسهلة الاستخدام، مع اهتمام بتقديم تجربة متناسقة على الشاشات المختلفة. أؤمن أن الموقع الناجح يجمع بين الشكل الجميل، والتنظيم الجيد، والتفاعل السلس.
+          </p>
+          <div class="about-note">
+            <span aria-hidden="true">✦</span>
+            <p>أحب تحويل الأفكار إلى واجهات عملية، مع الحرص على التفاصيل من أول سطر إلى آخر لمسة.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">ما أستخدمه</span>
+          <h2 id="skills-title">مهاراتي التقنية</h2>
+          <p>أدوات وتقنيات أستخدمها لبناء واجهات ويب حديثة.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">HTML</span>
+            <h3>HTML &amp; CSS</h3>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">JS</span>
+            <h3>JavaScript</h3>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">R</span>
+            <h3>React</h3>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">N</span>
+            <h3>Next.js</h3>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true">G</span>
+            <h3>Git</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="approach" aria-labelledby="approach-title">
+      <div class="container">
+        <div class="closing">
+          <div>
+            <h2 id="approach-title">كل تفصيلة تصنع تجربة أفضل</h2>
+            <p>أحرص على أن تكون الواجهة جميلة، واضحة، وسهلة الاستخدام على مختلف الأجهزة.</p>
+          </div>
+          <a class="button button-primary" href="#skills">استكشف مهاراتي <span aria-hidden="true">↑</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© 2026 <span class="footer-name">أحمد منصور عيسى</span>. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+</body>
+</html>
